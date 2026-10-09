@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Sign in · Prospect Graph</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0f1420;color:#e6e9f2;font:14px/1.4 -apple-system,Inter,sans-serif}
+form{width:340px;background:#171d2c;border:1px solid #262f45;border-radius:14px;padding:26px}
+h1{font-size:20px;margin:0 0 4px}p{color:#8b94ab;margin:0 0 18px;font-size:13px}
+label{display:block;font-size:12px;color:#8b94ab;margin:12px 0 4px}
+input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid #262f45;background:#0f1420;color:#e6e9f2;font:inherit}
+input:focus{outline:2px solid #3b5bdb;border-color:#3b5bdb}
+button{margin-top:18px;width:100%;padding:10px;border:0;border-radius:8px;background:#2f5bea;color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button:disabled{opacity:.6}#err{color:#fca5a5;font-size:12.5px;min-height:18px;margin-top:12px}.demo{display:block;text-align:center;margin-top:14px;font-size:12px;color:#8b94ab}.demo a{color:#93c5fd}
+</style></head><body>
+<form id="f" autocomplete="on"><h1>Prospect Graph</h1><p>Sign in to see your deals. Each person sees only their own data.</p>
+<label for="u">User or email</label><input id="u" name="username" autocomplete="username" required autofocus>
+<label for="p">Passphrase</label><input id="p" name="password" type="password" autocomplete="current-password" required>
+<button id="b">Sign in</button><div id="err" role="alert"></div>
+<span class="demo">No account? <a href="/index.html?demo=1">View the demo with fictional data</a></span></form>
+<script>
+document.getElementById("f").onsubmit=async e=>{ e.preventDefault(); const b=document.getElementById("b"), err=document.getElementById("err"); b.disabled=true; err.textContent="";
+  const r=await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({user:document.getElementById("u").value,passphrase:document.getElementById("p").value})}).catch(()=>null);
+  if(r&&r.ok){ location.href="/"; return; }
+  err.textContent=r?((await r.json().catch(()=>({}))).error||"Sign-in failed"):"Cannot reach the server"; b.disabled=false; document.getElementById("p").select(); };
+</script></body></html>

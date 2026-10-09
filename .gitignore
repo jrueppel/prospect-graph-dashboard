@@ -1,0 +1,20 @@
+# real prospect data contains PII - only sample/ and *.example.json are shareable
+
+__pycache__/
+*.pyc
+*.lock
+*.tmp
+.DS_Store
+
+# screenshots/docs contain real deal data
+docs/
+
+# nothing under data/ is shared except the fictional sample and the example user list
+data/*
+!data/sample/
+!data/users.example.json
+
+# secrets and logs, wherever they are
+*.log
+auth.json
+.session_secret

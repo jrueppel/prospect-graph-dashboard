@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Prospect Graph</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<aside id="left"><h1>Prospect Graph</h1><div id="whoami"><span id="whoName">…</span> <span><a id="sipLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Open SIP ↗</a> &nbsp;<a href="#" id="signOut">Sign out</a></span></div><select id="aeSel" style="width:100%;margin:0 0 6px;background:#0f1420;color:#e6e9f2;border:1px solid #262f45;border-radius:6px;padding:4px"></select><div id="viewSwitch"><button class="vs on" data-view="pipeline">Open pipeline</button><button class="vs" data-view="closed">Closed deals</button></div><div id="stageChips"></div><div class="sub" id="meta"></div><div id="totals"></div><h2>Ranked by importance</h2><div id="list"></div></aside>
+<div id="main">
+  <div id="closedPane"></div>
+  <svg id="svg"></svg>
+  <div id="controls"><label><input type="checkbox" id="showEnt"> competitors / industries / partners</label></div>
+  <div id="legend"><b>Recent activity</b><div class="bar"></div><div><span>Quiet (blue)</span><span>Mid (green)</span><span>Hot (orange)</span></div>
+    <div style="margin-top:6px"><span class="dot" style="display:inline-block;width:10px;height:10px;background:#e0a800"></span> Closed won &nbsp; <span class="dot" style="display:inline-block;width:10px;height:10px;background:#f3e3a6"></span> Tech win, unsigned &nbsp; <span class="dot" style="display:inline-block;width:10px;height:10px;background:#b7410e"></span> Loss</div><div class="sub" style="margin-top:6px">Size = importance · Ring = close confidence</div></div>
+</div>
+<aside id="right"><div class="sub">Click a prospect to see why it scores the way it does.</div></aside>
+<script src="scoring.js"></script>
+<script src="closed.js"></script>
+<script src="app.js"></script>
+</body></html>
